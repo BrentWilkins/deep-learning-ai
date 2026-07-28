@@ -1,0 +1,27 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python environments and caches
+**/.venv/
+**/__pycache__/
+**/*.py[cod]
+**/.ruff_cache/
+**/.mypy_cache/
+**/.ipynb_checkpoints/
+**/*_nbqa_ipynb.py
+
+# Local tool state
+**/.agents/
+**/.codex/
+**/.gradio/
+
+# Generated model artifacts
+**/*.orbax/
+
+# OS files
+.DS_Store
+
+# Empty artifact left by a paper-download example.
+building_agentic_RAG_with_Llamaindex/lesson_1/metagpt.pdf

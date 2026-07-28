@@ -1,0 +1,52 @@
+repos:
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+        args: ["--keep-id"]
+
+  - repo: local
+    hooks:
+      - id: jax-nbqa-ruff
+        name: jax-nbqa-ruff
+        entry: >-
+          env -u VIRTUAL_ENV
+          uv run --project build_and_train_an_LLM_with_JAX
+          --frozen --no-sync nbqa ruff --fix
+        language: system
+        files: ^build_and_train_an_LLM_with_JAX/.*\.ipynb$
+
+      - id: jax-nbqa-mypy
+        name: jax-nbqa-mypy
+        entry: >-
+          env -u VIRTUAL_ENV
+          uv run --project build_and_train_an_LLM_with_JAX
+          --frozen --no-sync nbqa mypy
+          --ignore-missing-imports
+        language: system
+        files: ^build_and_train_an_LLM_with_JAX/.*\.ipynb$
+
+      - id: rag-nbqa-ruff
+        name: rag-nbqa-ruff
+        entry: >-
+          uv run --project building_agentic_RAG_with_Llamaindex
+          --frozen --no-sync nbqa ruff --fix
+          --ignore=F704,PLE1142
+        language: system
+        files: ^building_agentic_RAG_with_Llamaindex/.*\.ipynb$
+
+      - id: rag-nbqa-mypy
+        name: rag-nbqa-mypy
+        entry: >-
+          uv run --project building_agentic_RAG_with_Llamaindex
+          --frozen --no-sync nbqa mypy
+          --ignore-missing-imports
+          --disable-error-code=top-level-await
+        language: system
+        files: ^building_agentic_RAG_with_Llamaindex/.*\.ipynb$
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.45.0
+    hooks:
+      - id: markdownlint
+        args: ["--fix"]

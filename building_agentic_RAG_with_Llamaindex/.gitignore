@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+
+.venv/
+__pycache__/
+*.py[cod]
+
+.ipynb_checkpoints/
+.ruff_cache/
+.mypy_cache/
+
+.DS_Store
+
+# Empty artifact left by the paper-download example.
+lesson_1/metagpt.pdf
